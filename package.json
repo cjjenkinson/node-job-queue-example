@@ -1,0 +1,59 @@
+{
+  "name": "email-queue-worker",
+  "version": "0.1.0",
+  "description": "Email queue worker built with Node.js, Redis, Bull and Sendgrid",
+  "keywords": [
+    "graphql",
+    "lowercase string",
+    "graphql scalar",
+    "scalar",
+    "string"
+  ],
+  "author": "Cameroo Jenkinson <camjenkinson@gmail.com@gmail.com>",
+  "license": "MIT",
+  "repository": "https://github.com/cjjenkinsomn/graphql-type-lowercase-string.git",
+  "main": "build/index.js",
+  "scripts": {
+    "start": "node build/index.js",
+    "build": "yarn remove:build && babel src --out-dir build",
+    "test": "jest",
+    "test:coverage": "yarn test --coverage",
+    "test:watch": "yarn test --watch",
+    "clean": "yarn remove:build & yarn remove:coverage & yarn remove:modules",
+    "remove:build": "rimraf build",
+    "remove:coverage": "rimraf coverage",
+    "remove:modules": "rimraf node_modules",
+    "lint": "eslint --cache src",
+    "lint:fix": "yarn lint --fix"
+  },
+  "dependencies": {
+    "bull": "^3.4.2",
+    "debug": "^3.1.0",
+    "ioredis": "^3.2.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "husky": "^1.0.0-rc.13",
+    "jest": "^23.4.0",
+    "lint-staged": "^7.2.0",
+    "prettier": "1.13.7",
+    "rimraf": "^2.6.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
