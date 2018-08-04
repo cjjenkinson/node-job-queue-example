@@ -1,21 +1,19 @@
 {
   "name": "email-queue-worker",
   "version": "0.1.0",
-  "description": "Email queue worker built with Node.js, Redis, Bull and Sendgrid",
-  "keywords": [
-    "graphql",
-    "lowercase string",
-    "graphql scalar",
-    "scalar",
-    "string"
-  ],
-  "author": "Cameroo Jenkinson <camjenkinson@gmail.com@gmail.com>",
+  "description": "Job queue workers built with Node, Redis and Bull",
+  "author": "Cameron Jenkinson <camjenkinson@gmail.com@gmail.com>",
   "license": "MIT",
-  "repository": "https://github.com/cjjenkinsomn/graphql-type-lowercase-string.git",
-  "main": "build/index.js",
+  "repository": "",
   "scripts": {
-    "start": "node build/index.js",
-    "build": "yarn remove:build && babel src --out-dir build",
+    "start:api": "node build-api/index.js",
+    "start:workers": "node build-workers/index.js",
+    "dev:api": "cross-env DEBUG=api* cross-env DIR=api backpack",
+    "dev:workers": "cross-env DEBUG=email-worker*,bull* cross-env DIR=email-worker backpack",
+    "dev:scheduled": "cross-env DEBUG=cron-jobs* cross-env DIR=cron-jobs backpack",
+    "build:api": "cross-env DIR=api backpack build",
+    "build:workers": "cross-env DIR=email-worker backpack build",
+    "build:scheduled": "cross-env DIR=cron-jobs backpack build",
     "test": "jest",
     "test:coverage": "yarn test --coverage",
     "test:watch": "yarn test --watch",
@@ -28,12 +26,14 @@
   },
   "dependencies": {
     "bull": "^3.4.2",
+    "cross-env": "^5.2.0",
     "debug": "^3.1.0",
     "ioredis": "^3.2.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "backpack-core": "^0.7.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-config-prettier": "^2.9.0",
